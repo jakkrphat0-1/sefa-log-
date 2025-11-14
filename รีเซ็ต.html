@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>รีเซ็ตการใช้งาน WiFi</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Poppins, Arial, sans-serif;
+        background: linear-gradient(135deg, #7b2ff7, #9d4edd, #c77dff);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+    }
+
+    .box {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 32px;
+        width: 340px;
+        border-radius: 18px;
+        backdrop-filter: blur(12px);
+        text-align: center;
+        box-shadow: 0 0 25px rgba(0,0,0,0.25);
+    }
+
+    h1 {
+        font-size: 26px;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: 14px;
+        opacity: 0.9;
+    }
+
+    input {
+        width: 90%;
+        padding: 12px;
+        margin: 10px 0;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .btn {
+        width: 95%;
+        padding: 12px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.25s;
+        background: #ffd6fc;
+        color: #5a189a;
+    }
+
+    .btn:hover {
+        background: #ffcdf8;
+    }
+
+    .error {
+        color: #ffdddd;
+        font-size: 13px;
+        margin-top: 5px;
+        display: none;
+    }
+
+    .footer {
+        margin-top: 15px;
+        font-size: 12px;
+        opacity: 0.7;
+    }
+</style>
+</head>
+<body>
+
+<div class="box">
+    <h1>รีเซ็ตการใช้งาน WiFi</h1>
+    <p>กรอก Username และรหัสผ่านก่อนรีเซ็ต</p>
+
+    <input type="text" id="adminUser" placeholder="Username" required>
+    <input type="password" id="adminPass" placeholder="รหัสผ่าน" required>
+
+    <button class="btn" onclick="checkPassword()">รีเซ็ตการใช้งาน</button>
+
+    <div id="errorMsg" class="error">รหัสผ่านไม่ถูกต้อง!</div>
+
+    <div class="footer">
+        Powered by Mikrotik Hotspot
+    </div>
+</div>
+
+<script>
+    // ตั้งรหัสผ่านและ username ของ Admin
+    const ADMIN_USER = "admin";
+    const ADMIN_PASS = "1234"; // <-- เปลี่ยนรหัสนี้ตามต้องการ
+
+    function checkPassword() {
+        const user = document.getElementById("adminUser").value;
+        const pass = document.getElementById("adminPass").value;
+        const errorMsg = document.getElementById("errorMsg");
+
+        if(user === ADMIN_USER && pass === ADMIN_PASS) {
+            // รหัสถูกต้อง → รีเซ็ต Hotspot
+            window.location.href = "$(link-logout)";
+        } else {
+            // รหัสไม่ถูกต้อง → แสดงข้อความ
+            errorMsg.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
